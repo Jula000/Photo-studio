@@ -30,7 +30,7 @@ const config = {
       },
       colors: {
         "about-bg": "#27272a",
-        "button-blue": "#4f46e5",
+        "button-blue": "#4A2CED",
       },
       boxShadow: {
         inner: "inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)",

@@ -23,7 +23,7 @@ const FormInput: React.FC<FormInputProps> = ({
 }) => {
   return (
     <div>
-      <label htmlFor={id} className="block text-sm font-medium text-gray-400">
+      <label htmlFor={id} className="block text-sm font-medium text-zinc-400">
         {label}
       </label>
       {textarea ? (
@@ -33,7 +33,7 @@ const FormInput: React.FC<FormInputProps> = ({
           rows={4}
           value={value}
           onChange={onChange}
-          className="mt-1 p-3 block w-full bg-gray-800 border-gray-600 rounded-md shadow-sm text-white"
+          className="mt-1 p-3 block w-full bg-zinc-800 border-about-bg rounded-md shadow-sm text-white"
           placeholder={placeholder}
         ></textarea>
       ) : (
@@ -43,7 +43,7 @@ const FormInput: React.FC<FormInputProps> = ({
           name={id}
           value={value}
           onChange={onChange}
-          className="mt-1 p-3 block w-full bg-gray-800 border-gray-600 rounded-md shadow-sm text-white"
+          className="mt-1 p-3 block w-full bg-zinc-800 border-about-bg rounded-md shadow-sm text-white"
           placeholder={placeholder}
         />
       )}

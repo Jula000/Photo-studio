@@ -1,5 +1,7 @@
 import React from "react";
+import Image from "next/image";
 import GlossyButton from "@/components/common/GlossyButton";
+
 interface ServiceHighlightsProps {
   title: string;
   description: string;
@@ -23,7 +25,7 @@ const ServiceHighlights: React.FC<ServiceHighlightsProps> = ({
       <div className="space-y-2">
         {highlights.map((highlight, index) => (
           <div key={index} className="flex items-center space-x-2">
-            <span className="text-blue-400">✦</span>
+            <Image src="/star.svg" height={30} width={30} alt="Star icon" />
             <p>{highlight}</p>
           </div>
         ))}

@@ -37,15 +37,15 @@ const Journey: React.FC = () => {
   return (
     <div className="text-white py-16">
       <section className="container mx-auto px-4">
-        <p className="uppercase text-base text-gray-400">Journey</p>
-        <h1 className="text-4xl font-bold mb-14">
-          DAMIEN'S JOURNEY - A TIMELINE
-        </h1>
+        <div className="border-b border-about-bg pb-6 mb-14">
+          <p className="uppercase text-base text-zinc-400">Journey</p>
+          <h1 className="text-4xl font-bold">DAMIEN'S JOURNEY - A TIMELINE</h1>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {timelineData.map((item, index) => (
-            <div key={index} className="bg-gray-700 p-6 rounded-lg">
+            <div key={index} className="bg-zinc-700 p-6 rounded-lg">
               <h2 className="text-2xl font-bold mb-4">YEAR - {item.year}</h2>
-              <p className="text-sm text-gray-400">{item.description}</p>
+              <p className="text-sm text-zinc-400">{item.description}</p>
             </div>
           ))}
         </div>

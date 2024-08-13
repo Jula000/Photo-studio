@@ -12,7 +12,7 @@ const SocialMediaButtons: React.FC<SocialMediaButtonsProps> = ({
 }) => {
   return (
     <div
-      className={`flex space-x-2 border border-gray-600 rounded-full p-2 w-fit ${className}`}
+      className={`flex space-x-2 border border-about-bg rounded-full p-2 w-fit ${className}`}
     >
       <SocialMediaLink href="https://facebook.com" icon={FaFacebookF} />
       <SocialMediaLink href="https://twitter.com" icon={FaTwitter} />

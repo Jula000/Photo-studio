@@ -11,12 +11,6 @@
   }
 }
 
-@media screen and (min-width: 680px) {
-  .custom-bg-image {
-    background-image: url("/kytsya.jpg");
-  }
-}
-
 .project-image-container {
   width: 100%;
   padding-top: 100%;

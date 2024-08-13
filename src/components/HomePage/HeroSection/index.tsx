@@ -14,10 +14,10 @@ const HeroSection: React.FC = () => {
   return (
     <div className="relative container mx-auto text-white flex flex-col md:flex-row justify-between items-center px-10 py-5 font-manrope">
       <div className="flex flex-col z-10 md:py-20 sm:jusify-start self-start md:self-center">
-        <span className="text-sm uppercase text-gray-400">
+        <span className="text-base uppercase text-zinc-400">
           Stunning Photography By
         </span>
-        <h1 className="text-4xl md:text-6xl font-bold">Damien Braun</h1>
+        <h1 className="text-6xl font-bold mb-3 md:mb-0">Damien Braun</h1>
       </div>
       <div className="z-0 sm:hidden hidden md:block">
         <Image
@@ -27,15 +27,13 @@ const HeroSection: React.FC = () => {
           objectFit="contain"
         />
       </div>
-      <div className="flex flex-col uppercase font-semibold sm:text-3xl md:text-5xl z-10 self-start md:self-center">
-        <div className="flex items-center mb-2">
-          <span className="mr-2">Let's</span>
+      <div className="flex flex-col uppercase font-semibold text-5xl z-10 self-start md:self-center">
+        <div className="flex items-center">
+          <span className="mr-2 font-bold">Let's</span>
           <GlossyButton
             onClick={handleClick}
             className="py-2 md:py-3 px-6 md:px-12"
-          >
-            Work Together
-          </GlossyButton>
+          ></GlossyButton>
         </div>
         <span className="font-bold">Work Together</span>
       </div>

@@ -12,23 +12,23 @@ const Header: React.FC = () => {
   };
 
   return (
-    <header className="border-gray-600 border-b">
+    <header className="border-about-bg border-b">
       <div className="container mx-auto flex justify-between items-center px-6">
         <div className="flex items-center">
-          <div className="text-white text-2xl font-bold border-l border-gray-600 p-6">
+          <div className="text-white text-2xl font-bold border-l border-about-bg p-6">
             <Link href="/">DAMIEN</Link>
           </div>
         </div>
 
         <div className="hidden lg:flex self-end">
-          <nav className="flex border-x border-t border-gray-600 rounded-md">
-            <NavLink href="/" className="border-r p-5 border-gray-600">
+          <nav className="flex border-x border-t border-about-bg rounded-md">
+            <NavLink href="/" className="border-r p-5 border-about-bg">
               Home
             </NavLink>
-            <NavLink href="/about" className="border-r p-5 border-gray-600">
+            <NavLink href="/about" className="border-r p-5 border-about-bg">
               About Me
             </NavLink>
-            <NavLink href="/portfolio" className="border-r p-5 border-gray-600">
+            <NavLink href="/portfolio" className="border-r p-5 border-about-bg">
               Portfolio
             </NavLink>
             <NavLink href="/services" className="p-5">
@@ -36,17 +36,18 @@ const Header: React.FC = () => {
             </NavLink>
           </nav>
         </div>
-
-        <div className="hidden lg:flex p-6 border-r border-gray-600">
-          <Link href="/contact" className="font-bold">
-            <Button>Contact Me</Button>
-          </Link>
+        <div>
+          <div className="hidden lg:flex p-6 border-r border-about-bg">
+            <Link href="/contact" className="font-bold">
+              <Button>Contact Me</Button>
+            </Link>
+          </div>
         </div>
 
-        <div className="lg:hidden flex items-center border-r p-3 border-gray-600">
+        <div className="lg:hidden flex items-center border-r p-3 border-about-bg">
           <button
             onClick={toggleMenu}
-            className="text-white focus:outline-none border rounded-3xl p-3 border-gray-600"
+            className="text-white focus:outline-none border rounded-3xl p-3 border-about-bg"
             aria-label="Toggle menu"
           >
             <svg
@@ -68,21 +69,21 @@ const Header: React.FC = () => {
       </div>
 
       {isOpen && (
-        <div className="lg:hidden absolute top-16 left-0 right-0 border-t bg-main-color border-gray-600 z-50">
+        <div className="lg:hidden absolute top-16 left-0 right-0 border-t bg-main-color border-about-bg z-50">
           <nav className="flex flex-col space-y-4 p-5">
-            <NavLink href="/" className="p-2 border-b border-gray-600">
+            <NavLink href="/" className="p-2 border-b border-about-bg">
               Home
             </NavLink>
-            <NavLink href="/about" className="p-2 border-b border-gray-600">
+            <NavLink href="/about" className="p-2 border-b border-about-bg">
               About Me
             </NavLink>
-            <NavLink href="/portfolio" className="p-2 border-b border-gray-600">
+            <NavLink href="/portfolio" className="p-2 border-b border-about-bg">
               Portfolio
             </NavLink>
-            <NavLink href="/services" className="p-2 border-b border-gray-600">
+            <NavLink href="/services" className="p-2 border-b border-about-bg">
               Services
             </NavLink>
-            <Link href="/contact" className="p-2 border-b border-gray-600">
+            <Link href="/contact" className="p-2 border-b border-about-bg">
               <Button>Contact Me</Button>
             </Link>
           </nav>

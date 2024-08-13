@@ -14,7 +14,7 @@ const Marquee: React.FC = () => {
   );
 
   return (
-    <div className="overflow-hidden whitespace-nowrap relative bg-gray-500">
+    <div className="overflow-hidden whitespace-nowrap relative bg-zinc-500">
       <div className="flex animate-marquee space-x-4">
         <div className="flex space-x-4">{content}</div>
       </div>
