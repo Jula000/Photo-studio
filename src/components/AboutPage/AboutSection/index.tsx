@@ -1,4 +1,5 @@
 import React from "react";
+import BackgroundImage from "@/components/common/BackgroundImage";
 
 const stats = [
   { count: "15+", label: "Years in Business" },
@@ -8,7 +9,8 @@ const stats = [
   { count: "1000+", label: "Social Media Followers" },
   { count: "90%", label: "Client Retention Rate" },
 ];
-const AboutSection = () => {
+
+const AboutSection: React.FC = () => {
   return (
     <section className="container mx-auto px-4 py-16 text-white">
       <div className="flex items-center space-x-4 mb-8 lg:justify-between justify-center">
@@ -16,10 +18,11 @@ const AboutSection = () => {
           <p className="uppercase text-base text-zinc-400">About</p>
           <h1 className="text-4xl font-bold">ABOUT DAMIEN BRAUN</h1>
         </div>
-        <div
-          className="relative h-36 lg:w-7/12 xl:w-10/12 rounded-3xl overflow-hidden bg-cover bg-center hidden md:block"
-          style={{ backgroundImage: "url('/kytsya.jpg')" }}
-        ></div>
+        <BackgroundImage
+          src="/kytsya.jpg"
+          className="h-20 lg:w-7/12 xl:w-10/12 hidden md:block"
+          height="h-40"
+        />
       </div>
       <div className="flex flex-wrap mb-8 justify-center">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
@@ -32,10 +35,7 @@ const AboutSection = () => {
         </div>
       </div>
       <section className="container mx-auto px-4 mb-16 border-b border-about-bg pb-20">
-        <div
-          className="relative w-full h-96 rounded-3xl overflow-hidden bg-cover bg-center"
-          style={{ backgroundImage: "url('/kytsya.jpg')" }}
-        ></div>
+        <BackgroundImage src="/kytsya.jpg" />
       </section>
       <div className="border-b border-about-bg pb-20">
         <h2 className="text-3xl font-bold mb-4">MY BIOGRAPHY</h2>

@@ -1,6 +1,7 @@
 import React from "react";
 import SocialMediaButtons from "@/components/common/SocialMediaButtons";
 import Button from "@/components/common/Button";
+import BackgroundImage from "@/components/common/BackgroundImage";
 
 const ContactSection: React.FC = () => {
   return (
@@ -18,14 +19,11 @@ const ContactSection: React.FC = () => {
           </p>
         </div>
         <div className="w-full md:w-1/2 flex flex-col items-center">
-          <div
-            className="w-full h-80 rounded-3xl overflow-hidden bg-cover bg-center relative "
-            style={{ backgroundImage: "url('/kytsya.jpg')" }}
-          >
+          <BackgroundImage src="/kytsya.jpg" height="h-80">
             <div className="bottom-1/2 -right-4 bg-main-color px-4 py-4 rounded-full absolute hidden md:flex">
               <SocialMediaButtons className="rounded-full border border-about-bg px-2 py-2" />
             </div>
-          </div>
+          </BackgroundImage>
         </div>
         <div className="flex md:hidden justify-center lg:justify-end mt-4">
           <div className="p-2">

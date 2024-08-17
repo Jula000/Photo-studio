@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import BackgroundImage from "@/components/common/BackgroundImage";
 
 const brands = [
   { name: "Infinity Parker", logo: "/brands/logo1.png", width: 251 },
@@ -16,14 +17,15 @@ const PortfolioSection: React.FC = () => {
         <div className="flex flex-col lg:flex-row justify-between">
           <div className="flex-col">
             <p className="uppercase text-large text-zinc-400">Portfolio</p>
-            <h1 className="md:text-3xl lg:text-3xl text-4xl 2xl:text-4xl  font-bold mb-4">
+            <h1 className="md:text-3xl lg:text-3xl text-4xl 2xl:text-4xl font-bold mb-4">
               VISUAL POETRY IN PIXELS
             </h1>
           </div>
-          <div
-            className="h-20 lg:w-7/12 xl:w-4/6 rounded-3xl bg-cover bg-center hidden md:block"
-            style={{ backgroundImage: "url('/kytsya.jpg')" }}
-          ></div>
+          <BackgroundImage
+            src="/kytsya.jpg"
+            className="h-20 lg:w-7/12 xl:w-4/6 self-start hidden md:block"
+            height="h-20"
+          />
         </div>
 
         <p className="text-lg leading-relaxed mb-8 text-zinc-400">
@@ -33,17 +35,17 @@ const PortfolioSection: React.FC = () => {
           frame. Explore the diverse tapestry of stories I've had the privilege
           to capture and witness the world through my lens.
         </p>
+
         <section className="container mx-auto px-4 mb-16">
-          <div
-            className="relative w-full h-96 rounded-3xl overflow-hidden bg-cover bg-center"
-            style={{ backgroundImage: "url('/kytsya.jpg')" }}
-          ></div>
+          <BackgroundImage src="/kytsya.jpg" />
         </section>
+
         <h2 className="mb-4 uppercase text-zinc-400 text-center">
           brands i have worked with
         </h2>
       </section>
-      <div className="flex flex-wrap justify-center  bg-zinc-900">
+
+      <div className="flex flex-wrap justify-center bg-zinc-900">
         {brands.map((brand, index) => (
           <div key={index} className="p-4">
             <Image
