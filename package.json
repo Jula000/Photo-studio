@@ -11,8 +11,6 @@
   },
   "dependencies": {
     "@next/font": "^14.2.4",
-    "@splidejs/react-splide": "^0.7.12",
-    "@splidejs/splide": "^4.1.4",
     "codemod": "^0.13.9",
     "cookie-parser": "^1.4.6",
     "cookieparser": "^0.1.0",
