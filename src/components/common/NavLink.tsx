@@ -20,7 +20,6 @@ const NavLink: React.FC<NavLinkProps> = ({ href, children, className }) => {
         isActive
           ? "font-bold bg-zinc-800 rounded-l-md rounded-r-md"
           : "font-normal"
-      } : "font-normal"
       } hover:text-zinc-400 ${className}`}
     >
       {children}

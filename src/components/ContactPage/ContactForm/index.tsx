@@ -1,9 +1,57 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import { FaArrowRight } from "react-icons/fa";
 import GlossyButton from "@/components/common/GlossyButton";
 import FormInput from "@/components/common/FormInput";
 
 const ContactForm: React.FC = () => {
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phoneNumber: "",
+    message: "",
+  });
+
+  const [status, setStatus] = useState<string | null>(null);
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { id, value } = e.target;
+    setFormData((prevData) => ({ ...prevData, [id]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setStatus("Message sent successfully!");
+        setFormData({
+          firstName: "",
+          lastName: "",
+          email: "",
+          phoneNumber: "",
+          message: "",
+        });
+      } else {
+        setStatus("Failed to send message.");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      setStatus("Failed to send message.");
+    }
+  };
+
   return (
     <div className="text-white">
       <div className="container mx-auto px-4 py-12">
@@ -20,7 +68,7 @@ const ContactForm: React.FC = () => {
                 convenience.
               </p>
             </div>
-            <div className="flex flex-col items-center  lg:flex-row md:items-center md:space-x-4">
+            <div className="flex flex-col items-center lg:flex-row md:items-center md:space-x-4">
               <div className="flex items-center space-x-2 mb-4 md:mb-0">
                 <span>+1-123-456-7890</span>
                 <FaArrowRight className="text-blue-500" />
@@ -46,31 +94,39 @@ const ContactForm: React.FC = () => {
               </p>
             </div>
             <div className="w-full md:w-2/3 lg:w-1/2">
-              <form className="space-y-6">
+              <form className="space-y-6" onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <FormInput
-                    id="first-name"
+                    id="firstName"
                     label="First Name"
                     type="text"
                     placeholder="First Name"
+                    value={formData.firstName}
+                    onChange={handleChange}
                   />
                   <FormInput
-                    id="last-name"
+                    id="lastName"
                     label="Last Name"
                     type="text"
                     placeholder="Last Name"
+                    value={formData.lastName}
+                    onChange={handleChange}
                   />
                   <FormInput
                     id="email"
                     label="Email"
                     type="email"
                     placeholder="Email Address"
+                    value={formData.email}
+                    onChange={handleChange}
                   />
                   <FormInput
-                    id="phone-number"
+                    id="phoneNumber"
                     label="Phone Number"
                     type="tel"
                     placeholder="Phone Number"
+                    value={formData.phoneNumber}
+                    onChange={handleChange}
                   />
                 </div>
                 <FormInput
@@ -78,6 +134,8 @@ const ContactForm: React.FC = () => {
                   label="Your Message"
                   type="text"
                   placeholder="Message"
+                  value={formData.message}
+                  onChange={handleChange}
                   textarea
                 />
                 <div className="flex flex-col lg:items-center lg:flex-row md:justify-center">
@@ -90,6 +148,7 @@ const ContactForm: React.FC = () => {
                   />
                 </div>
               </form>
+              {status && <p className="mt-4 text-center">{status}</p>}
             </div>
           </div>
         </div>

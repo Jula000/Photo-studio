@@ -3,6 +3,44 @@ import Link from "next/link";
 import SocialMediaButtons from "./SocialMediaButtons";
 import GlossyButton from "./GlossyButton";
 
+const footerSections = [
+  {
+    title: "HOME",
+    links: [
+      { text: "About Me", href: "/about" },
+      { text: "My Works", href: "/works" },
+      { text: "Testimonials", href: "/testimonials" },
+    ],
+  },
+  {
+    title: "CLIENTS",
+    links: [
+      { text: "Klovesto", href: "#" },
+      { text: "Nukeway", href: "#" },
+      { text: "Cloven's", href: "#" },
+      { text: "Menvol", href: "#" },
+    ],
+  },
+  {
+    title: "PORTFOLIO",
+    links: [
+      { text: "Events", href: "#" },
+      { text: "Portrait", href: "#" },
+      { text: "Branding", href: "#" },
+      { text: "Commercial", href: "#" },
+      { text: "Wedding", href: "#" },
+    ],
+  },
+  {
+    title: "SERVICES",
+    links: [
+      { text: "Portraits", href: "#" },
+      { text: "Events", href: "#" },
+      { text: "Commercial", href: "#" },
+    ],
+  },
+];
+
 const Footer = () => {
   return (
     <footer className="pt-10 text-white">
@@ -33,43 +71,7 @@ const Footer = () => {
               </div>
             </div>
             <div className="grid grid-cols-2 lg:flex lg:justify-between lg:flex-grow pt-10 lg:mt-0 lg:px-10 md:px-10 border-r border-l md:border-r md:border-l border-about-bg">
-              {[
-                {
-                  title: "HOME",
-                  links: [
-                    { text: "About Me", href: "/about" },
-                    { text: "My Works", href: "/works" },
-                    { text: "Testimonials", href: "/testimonials" },
-                  ],
-                },
-                {
-                  title: "CLIENTS",
-                  links: [
-                    { text: "Klovesto", href: "#" },
-                    { text: "Nukeway", href: "#" },
-                    { text: "Cloven's", href: "#" },
-                    { text: "Menvol", href: "#" },
-                  ],
-                },
-                {
-                  title: "PORTFOLIO",
-                  links: [
-                    { text: "Events", href: "#" },
-                    { text: "Portrait", href: "#" },
-                    { text: "Branding", href: "#" },
-                    { text: "Commerciale", href: "#" },
-                    { text: "Wedding", href: "#" },
-                  ],
-                },
-                {
-                  title: "SERVICES",
-                  links: [
-                    { text: "Portraits", href: "#" },
-                    { text: "Events", href: "#" },
-                    { text: "Commercial", href: "#" },
-                  ],
-                },
-              ].map((section, index) => (
+              {footerSections.map((section, index) => (
                 <div key={index} className="w-full mb-6 lg:mb-0 px-4 lg:px-0">
                   <h3 className="font-semibold text-zinc-600">
                     {section.title}

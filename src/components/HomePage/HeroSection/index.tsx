@@ -33,7 +33,7 @@ const HeroSection: React.FC = () => {
           <GlossyButton
             onClick={handleClick}
             className="py-2 md:py-3 px-6 md:px-12"
-          ></GlossyButton>
+          />
         </div>
         <span className="font-bold">Work Together</span>
       </div>
