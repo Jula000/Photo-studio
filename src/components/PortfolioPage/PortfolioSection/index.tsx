@@ -3,14 +3,20 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import BackgroundImage from "@/components/common/BackgroundImage";
 
+interface Brand {
+  name: string;
+  logo: string;
+  width: number;
+}
+
 const PortfolioSection: React.FC = () => {
-  const [brands, setBrands] = useState<any[]>([]);
+  const [brands, setBrands] = useState<Brand[]>([]);
 
   useEffect(() => {
     const fetchBrands = async () => {
       try {
         const response = await fetch("/api/brands");
-        const data = await response.json();
+        const data: Brand[] = await response.json();
         setBrands(data);
       } catch (error) {
         console.error("Error fetching brands:", error);
