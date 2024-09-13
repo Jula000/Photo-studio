@@ -1,143 +1,194 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import SessionPriceCard from "@/components/ServicesPage/SessionPriceCard";
 import PhotographySection from "@/components/ServicesPage/PhotographySection";
-import { useState } from "react";
 
-const portraitPhotography = [
-  {
-    title: "Portrait Photography",
-    description:
-      "Our portrait photography service is all about showcasing your unique personality. Whether you need a professional headshot, a family portrait, or a personal photoshoot, we create images that reflect your true self. We work closely with you to bring out your best angles and expressions, ensuring every portrait tells your story.",
-    linkText: "View Projects",
-    linkUrl: "/projects",
-    imageUrl: "/kytsya.jpg",
-  },
-];
+interface PhotographySectionData {
+  title: string;
+  description: string;
+  linkText: string;
+  linkUrl: string;
+  imageUrls: string[];
+}
+
+interface SessionPriceCardData {
+  title: string;
+  price: number;
+  duration: number;
+  imagesIncluded: number;
+  additionalImagePrice: number;
+  description: string;
+}
 
 const Prices: React.FC = () => {
-  const [currentSection, setCurrentSection] = useState(0);
+  const [portraitPhotography, setPortraitPhotography] =
+    useState<PhotographySectionData | null>(null);
+  const [eventPhotography, setEventPhotography] =
+    useState<PhotographySectionData | null>(null);
+  const [commercialPhotography, setCommercialPhotography] =
+    useState<PhotographySectionData | null>(null);
+  const [priceCards, setPriceCards] = useState<SessionPriceCardData[]>([]);
 
-  const handlePrev = () => {
-    setCurrentSection((prev) =>
-      prev > 0 ? prev - 1 : portraitPhotography.length - 1
+  const [currentPortraitImageIndex, setCurrentPortraitImageIndex] = useState(0);
+  const [currentEventImageIndex, setCurrentEventImageIndex] = useState(0);
+  const [currentCommercialImageIndex, setCurrentCommercialImageIndex] =
+    useState(0);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Correct API paths
+        const photographyRes = await fetch("/api/photography-sections");
+        if (!photographyRes.ok) {
+          throw new Error("Failed to fetch photography sections");
+        }
+        const photographyData: PhotographySectionData[] =
+          await photographyRes.json();
+
+        setPortraitPhotography(photographyData[0]);
+        setEventPhotography(photographyData[1]);
+        setCommercialPhotography(photographyData[2]);
+
+        const priceCardsRes = await fetch("/api/session-price-cards");
+        if (!priceCardsRes.ok) {
+          throw new Error("Failed to fetch session price cards");
+        }
+        const priceCardsData: SessionPriceCardData[] =
+          await priceCardsRes.json();
+
+        setPriceCards(priceCardsData);
+      } catch (error) {
+        console.error("Failed to load data", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const handlePrevPortraitImage = () => {
+    if (!portraitPhotography) return;
+    setCurrentPortraitImageIndex((prevIndex) =>
+      prevIndex > 0 ? prevIndex - 1 : portraitPhotography.imageUrls.length - 1
     );
   };
 
-  const handleNext = () => {
-    setCurrentSection((prev) =>
-      prev < portraitPhotography.length - 1 ? prev + 1 : 0
+  const handleNextPortraitImage = () => {
+    if (!portraitPhotography) return;
+    setCurrentPortraitImageIndex((prevIndex) =>
+      prevIndex < portraitPhotography.imageUrls.length - 1 ? prevIndex + 1 : 0
     );
   };
+
+  const handlePrevEventImage = () => {
+    if (!eventPhotography) return;
+    setCurrentEventImageIndex((prevIndex) =>
+      prevIndex > 0 ? prevIndex - 1 : eventPhotography.imageUrls.length - 1
+    );
+  };
+
+  const handleNextEventImage = () => {
+    if (!eventPhotography) return;
+    setCurrentEventImageIndex((prevIndex) =>
+      prevIndex < eventPhotography.imageUrls.length - 1 ? prevIndex + 1 : 0
+    );
+  };
+
+  const handlePrevCommercialImage = () => {
+    if (!commercialPhotography) return;
+    setCurrentCommercialImageIndex((prevIndex) =>
+      prevIndex > 0 ? prevIndex - 1 : commercialPhotography.imageUrls.length - 1
+    );
+  };
+
+  const handleNextCommercialImage = () => {
+    if (!commercialPhotography) return;
+    setCurrentCommercialImageIndex((prevIndex) =>
+      prevIndex < commercialPhotography.imageUrls.length - 1 ? prevIndex + 1 : 0
+    );
+  };
+
+  if (!portraitPhotography || !eventPhotography || !commercialPhotography) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <>
       <div className="container mx-auto p-4">
         <PhotographySection
-          title={portraitPhotography[currentSection].title}
-          description={portraitPhotography[currentSection].description}
-          linkText={portraitPhotography[currentSection].linkText}
-          linkUrl={portraitPhotography[currentSection].linkUrl}
-          imageUrl={portraitPhotography[currentSection].imageUrl}
-          onPrev={handlePrev}
-          onNext={handleNext}
+          title={portraitPhotography.title}
+          description={portraitPhotography.description}
+          linkText={portraitPhotography.linkText}
+          linkUrl={portraitPhotography.linkUrl}
+          imageUrls={portraitPhotography.imageUrls}
+          currentImageIndex={currentPortraitImageIndex}
+          onPrev={handlePrevPortraitImage}
+          onNext={handleNextPortraitImage}
         />
         <div>
-          <SessionPriceCard
-            title="Individual Session"
-            price={250}
-            duration={2}
-            imagesIncluded={20}
-            additionalImagePrice={10}
-            description="Ideal for capturing your unique personality and style."
-          />
-          <SessionPriceCard
-            title="Family Session"
-            price={400}
-            duration={2.5}
-            imagesIncluded={30}
-            additionalImagePrice={10}
-            description="Perfect for creating lasting memories with your loved ones."
-          />
-          <SessionPriceCard
-            title="Couple Session"
-            price={300}
-            duration={2.5}
-            imagesIncluded={25}
-            additionalImagePrice={10}
-            description="Celebrate your love story with an intimate photoshoot."
-          />
+          {priceCards.map((card, index) => (
+            <SessionPriceCard
+              key={index}
+              title={card.title}
+              price={card.price}
+              duration={card.duration}
+              imagesIncluded={card.imagesIncluded}
+              additionalImagePrice={card.additionalImagePrice}
+              description={card.description}
+            />
+          ))}
         </div>
       </div>
+
       <div className="container mx-auto p-4">
         <PhotographySection
-          title={portraitPhotography[currentSection].title}
-          description={portraitPhotography[currentSection].description}
-          linkText={portraitPhotography[currentSection].linkText}
-          linkUrl={portraitPhotography[currentSection].linkUrl}
-          imageUrl={portraitPhotography[currentSection].imageUrl}
-          onPrev={handlePrev}
-          onNext={handleNext}
+          title={eventPhotography.title}
+          description={eventPhotography.description}
+          linkText={eventPhotography.linkText}
+          linkUrl={eventPhotography.linkUrl}
+          imageUrls={eventPhotography.imageUrls}
+          currentImageIndex={currentEventImageIndex}
+          onPrev={handlePrevEventImage}
+          onNext={handleNextEventImage}
         />
-        <SessionPriceCard
-          title="Couple Session"
-          price={300}
-          duration={2.5}
-          imagesIncluded={25}
-          additionalImagePrice={10}
-          description="Celebrate your love story with an intimate photoshoot."
-        />
-        <SessionPriceCard
-          title="Couple Session"
-          price={300}
-          duration={2.5}
-          imagesIncluded={25}
-          additionalImagePrice={10}
-          description="Celebrate your love story with an intimate photoshoot."
-        />
-        <SessionPriceCard
-          title="Couple Session"
-          price={300}
-          duration={2.5}
-          imagesIncluded={25}
-          additionalImagePrice={10}
-          description="Celebrate your love story with an intimate photoshoot."
-        />
+        <div>
+          {priceCards.map((card, index) => (
+            <SessionPriceCard
+              key={index}
+              title={card.title}
+              price={card.price}
+              duration={card.duration}
+              imagesIncluded={card.imagesIncluded}
+              additionalImagePrice={card.additionalImagePrice}
+              description={card.description}
+            />
+          ))}
+        </div>
       </div>
+
       <div className="container mx-auto p-4">
         <PhotographySection
-          title={portraitPhotography[currentSection].title}
-          description={portraitPhotography[currentSection].description}
-          linkText={portraitPhotography[currentSection].linkText}
-          linkUrl={portraitPhotography[currentSection].linkUrl}
-          imageUrl={portraitPhotography[currentSection].imageUrl}
-          onPrev={handlePrev}
-          onNext={handleNext}
+          title={commercialPhotography.title}
+          description={commercialPhotography.description}
+          linkText={commercialPhotography.linkText}
+          linkUrl={commercialPhotography.linkUrl}
+          imageUrls={commercialPhotography.imageUrls}
+          currentImageIndex={currentCommercialImageIndex}
+          onPrev={handlePrevCommercialImage}
+          onNext={handleNextCommercialImage}
         />
-        <SessionPriceCard
-          title="Couple Session"
-          price={300}
-          duration={2.5}
-          imagesIncluded={25}
-          additionalImagePrice={10}
-          description="Celebrate your love story with an intimate photoshoot."
-        />
-        <SessionPriceCard
-          title="Couple Session"
-          price={300}
-          duration={2.5}
-          imagesIncluded={25}
-          additionalImagePrice={10}
-          description="Celebrate your love story with an intimate photoshoot."
-        />
-        <SessionPriceCard
-          title="Couple Session"
-          price={300}
-          duration={2.5}
-          imagesIncluded={25}
-          additionalImagePrice={10}
-          description="Celebrate your love story with an intimate photoshoot."
-        />
+        <div>
+          {priceCards.map((card, index) => (
+            <SessionPriceCard
+              key={index}
+              title={card.title}
+              price={card.price}
+              duration={card.duration}
+              imagesIncluded={card.imagesIncluded}
+              additionalImagePrice={card.additionalImagePrice}
+              description={card.description}
+            />
+          ))}
+        </div>
       </div>
     </>
   );

@@ -17,10 +17,10 @@ const AboutSection: React.FC = () => {
             Know More
           </Button>
         </div>
-        <div className="relative flex flex-col md:flex-row items-center space-y-6 md:space-y-0 md:space-x-6">
-          <div className="relative w-full md:w-1/2 h-80">
+        <div className="relative flex flex-col md:flex-row md:items-center space-y-6 md:space-y-0 md:space-x-6">
+          <div className="relative w-full md:w-1/2 h-[500px]">
             <Image
-              src="/kytsya.jpg"
+              src="/about-im-damien.png"
               alt="Damien"
               layout="fill"
               objectFit="cover"
