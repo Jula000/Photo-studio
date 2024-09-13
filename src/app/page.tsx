@@ -7,6 +7,7 @@ import Portfolio from "../components/HomePage/Portfolio";
 import FaqSection from "../components/HomePage/FaqSection";
 import Footer from "@/components/common/Footer";
 import Testimonials from "@/components/HomePage/Testimonials";
+import Marquee from "@/components/common/Marquee";
 
 export default function Home() {
   return (

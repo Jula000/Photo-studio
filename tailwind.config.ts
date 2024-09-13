@@ -6,6 +6,15 @@ const config = {
   ],
   theme: {
     extend: {
+      keyframes: {
+        marquee: {
+          "0%": { transform: "translateX(100%)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
+      },
+      animation: {
+        marquee: "marquee 20s linear infinite",
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
@@ -21,7 +30,7 @@ const config = {
       },
       colors: {
         "about-bg": "#27272a",
-        "button-blue": "#4f46e5",
+        "button-blue": "#4A2CED",
       },
       boxShadow: {
         inner: "inset 0 2px 4px 0 rgba(0, 0, 0, 0.06)",

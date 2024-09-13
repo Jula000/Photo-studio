@@ -23,19 +23,19 @@ const PhotographySection: React.FC<PhotographySectionProps> = ({
   onNext,
 }) => {
   return (
-    <div className="flex flex-col md:flex-row items-center justify-between w-full p-6 text-white">
+    <div className="flex flex-col md:flex-row items-center justify-between w-full px-6 text-white">
       <div className="flex-1 md:mr-6">
         <h2 className="text-3xl font-bold">{title}</h2>
         <p className="mt-4">{description}</p>
         <Link
           href={linkUrl}
-          className="mt-6 inline-block text-blue-500 hover:underline"
+          className="mt-6 inline-block border-b border-about-bg pb-2"
         >
           {linkText} &rarr;
         </Link>
       </div>
       <div className="flex-col">
-        <div className="flex-1 mt-6 md:mt-0">
+        <div className="flex-1 mt-6 md:mt-0 mb-2">
           <Image
             src={imageUrl}
             alt={title}
@@ -46,13 +46,25 @@ const PhotographySection: React.FC<PhotographySectionProps> = ({
         </div>
         <div className="flex mt-6 md:mt-0 space-x-2 justify-center">
           {onPrev && (
-            <Button onClick={onPrev} className="rounded-full">
-              &larr;
+            <Button onClick={onPrev} className="rounded-full w-10 h-10">
+              <Image
+                src={"<.svg"}
+                alt=""
+                width={9}
+                height={9}
+                className="self-center"
+              />
             </Button>
           )}
           {onNext && (
-            <Button onClick={onNext} className="rounded-full">
-              &rarr;
+            <Button onClick={onNext} className="rounded-full w-10 h-10">
+              <Image
+                src={">.svg"}
+                alt=""
+                width={9}
+                height={9}
+                className="self-center"
+              />
             </Button>
           )}
         </div>

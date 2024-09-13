@@ -1,5 +1,6 @@
 import React from "react";
-import { FaExternalLinkAlt } from "react-icons/fa";
+import Image from "next/image";
+import GlossyButton from "@/components/common/GlossyButton";
 
 interface ServiceHighlightsProps {
   title: string;
@@ -17,14 +18,14 @@ const ServiceHighlights: React.FC<ServiceHighlightsProps> = ({
       <div className="flex items-center space-x-2">
         <h2 className="text-2xl font-semibold flex items-center space-x-2">
           <span className="uppercase">{title}</span>
-          <FaExternalLinkAlt className="text-blue-400" />
+          <GlossyButton className="px-6 py-3" />
         </h2>
       </div>
       <p>{description}</p>
       <div className="space-y-2">
         {highlights.map((highlight, index) => (
           <div key={index} className="flex items-center space-x-2">
-            <span className="text-blue-400">✦</span>
+            <Image src="/star.svg" height={30} width={30} alt="Star icon" />
             <p>{highlight}</p>
           </div>
         ))}

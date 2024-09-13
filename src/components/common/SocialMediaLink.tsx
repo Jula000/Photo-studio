@@ -16,9 +16,9 @@ const SocialMediaLink: React.FC<SocialMediaLinkProps> = ({
   return (
     <Link
       href={href}
-      className={`bg-gray-800 p-3 rounded-full hover:bg-gray-700 ${className}`}
+      className={`bg-zinc-800 p-3 rounded-full hover:bg-zinc-700 h-9 w-9 border-l border-t shadow-inner shadow-zinc-700 border-zinc-700 ${className}`}
     >
-      <Icon className="h-3 w-3" />
+      <Icon className="h-3 w-3 justify-center" />
     </Link>
   );
 };

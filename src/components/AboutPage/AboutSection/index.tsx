@@ -1,51 +1,43 @@
 import React from "react";
+import BackgroundImage from "@/components/common/BackgroundImage";
 
-const AboutSection = () => {
+const stats = [
+  { count: "15+", label: "Years in Business" },
+  { count: "500+", label: "Happy Clients" },
+  { count: "10+", label: "Photography Awards" },
+  { count: "05+", label: "International Shoots" },
+  { count: "1000+", label: "Social Media Followers" },
+  { count: "90%", label: "Client Retention Rate" },
+];
+
+const AboutSection: React.FC = () => {
   return (
-    <div className="text-white">
-      <section className="container mx-auto px-4 py-16">
-        <p className="uppercase text-base text-gray-400">About</p>
-        <h1 className="text-4xl font-bold mb-8">ABOUT DAMIEN BRAUN</h1>
-        <div className="flex flex-wrap mb-16">
-          <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/6 p-4">
-            <div className="bg-gray-800 p-6 rounded-lg">
-              <div className="text-3xl font-bold">15+</div>
-              <div className="text-sm text-gray-400">Years in Business</div>
-            </div>
-          </div>
-          <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/6 p-4">
-            <div className="bg-gray-800 p-6 rounded-lg">
-              <div className="text-3xl font-bold">500+</div>
-              <div className="text-sm text-gray-400">Happy Clients</div>
-            </div>
-          </div>
-          <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/6 p-4">
-            <div className="bg-gray-800 p-6 rounded-lg">
-              <div className="text-3xl font-bold">10+</div>
-              <div className="text-sm text-gray-400">Photography Awards</div>
-            </div>
-          </div>
-          <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/6 p-4">
-            <div className="bg-gray-800 p-6 rounded-lg">
-              <div className="text-3xl font-bold">05+</div>
-              <div className="text-sm text-gray-400">International Shoots</div>
-            </div>
-          </div>
-          <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/6 p-4">
-            <div className="bg-gray-800 p-6 rounded-lg">
-              <div className="text-3xl font-bold">10,000+</div>
-              <div className="text-sm text-gray-400">
-                Social Media Followers
-              </div>
-            </div>
-          </div>
-          <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/6 p-4">
-            <div className="bg-gray-800 p-6 rounded-lg">
-              <div className="text-3xl font-bold">90%</div>
-              <div className="text-sm text-gray-400">Client Retention Rate</div>
-            </div>
-          </div>
+    <section className="container mx-auto px-4 py-16 text-white">
+      <div className="flex items-center space-x-4 mb-8 lg:justify-between justify-center">
+        <div className="flex flex-col space-y-2">
+          <p className="uppercase text-base text-zinc-400">About</p>
+          <h1 className="text-4xl font-bold">ABOUT DAMIEN BRAUN</h1>
         </div>
+        <BackgroundImage
+          src="/kytsya.jpg"
+          className="h-20 lg:w-7/12 xl:w-10/12 hidden md:block"
+          height="h-40"
+        />
+      </div>
+      <div className="flex flex-wrap mb-8 justify-center">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-8">
+          {stats.map((item, index) => (
+            <div key={index} className="bg-zinc-800 p-6 rounded-lg">
+              <div className="text-3xl font-bold">{item.count}</div>
+              <div className="text-sm text-zinc-400">{item.label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+      <section className="container mx-auto px-4 mb-16 border-b border-about-bg pb-20">
+        <BackgroundImage src="/kytsya.jpg" />
+      </section>
+      <div className="border-b border-about-bg pb-20">
         <h2 className="text-3xl font-bold mb-4">MY BIOGRAPHY</h2>
         <p className="text-lg leading-relaxed">
           Damien Braun's love affair with photography began at a young age,
@@ -62,8 +54,8 @@ const AboutSection = () => {
           emotions that define our lives. With each click of her camera, she
           weaves stories that transcend time and space.
         </p>
-      </section>
-    </div>
+      </div>
+    </section>
   );
 };
 

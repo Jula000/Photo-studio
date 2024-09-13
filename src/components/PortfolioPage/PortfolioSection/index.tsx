@@ -1,28 +1,58 @@
-import React from "react";
+"use client";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import BackgroundImage from "@/components/common/BackgroundImage";
 
-const brands = [
-  { name: "Infinity Parker", logo: "/brands/logo1.png", width: 251 },
-  { name: "Omega Million", logo: "/brands/logo2.png", width: 353 },
-  { name: "WheelApp", logo: "/brands/logo3.png", width: 204 },
-  { name: "High Country Club", logo: "/brands/logo4.png", width: 322 },
-  { name: "EdgeKart", logo: "/brands/logo5.png", width: 183 },
-];
+interface Brand {
+  name: string;
+  logo: string;
+  width: number;
+}
 
 const PortfolioSection: React.FC = () => {
+  const [brands, setBrands] = useState<Brand[]>([]);
+
+  useEffect(() => {
+    const fetchBrands = async () => {
+      try {
+        const response = await fetch("/api/brands");
+        const data: Brand[] = await response.json();
+        setBrands(data);
+      } catch (error) {
+        console.error("Error fetching brands:", error);
+      }
+    };
+
+    fetchBrands();
+  }, []);
+
   return (
     <div className="text-white py-16">
       <section className="container mx-auto px-4 text-start">
-        <p className="uppercase text-base text-gray-400">Portfolio</p>
-        <h1 className="text-4xl font-bold mb-4">VISUAL POETRY IN PIXELS</h1>
-        <p className="text-lg leading-relaxed mb-8 text-gray-400">
+        <div className="flex flex-col lg:flex-row justify-between">
+          <div className="flex-col">
+            <p className="uppercase text-large text-zinc-400">Portfolio</p>
+            <h1 className="md:text-3xl lg:text-3xl text-4xl 2xl:text-4xl font-bold mb-4">
+              VISUAL POETRY IN PIXELS
+            </h1>
+          </div>
+          <BackgroundImage
+            src="portfolio-page/portfolio-page-top.jpg"
+            className="h-20 lg:w-7/12 xl:w-4/6 self-start hidden md:block"
+            height="h-20"
+          />
+        </div>
+        <p className="text-lg leading-relaxed mb-8 text-zinc-400">
           Step into a visual journey that encapsulates the essence of my lens.
           Each photograph in this portfolio is a narrative, a frozen moment in
           time, and a testament to the artistry and passion poured into every
           frame. Explore the diverse tapestry of stories I've had the privilege
           to capture and witness the world through my lens.
         </p>
-        <h2 className="mb-4 uppercase text-gray-400 text-center">
+        <section className="container mx-auto px-4 mb-16">
+          <BackgroundImage src="portfolio-page/portfolio-page-bot.jpg" />
+        </section>
+        <h2 className="mb-4 uppercase text-zinc-400 text-center">
           brands i have worked with
         </h2>
       </section>
@@ -34,7 +64,6 @@ const PortfolioSection: React.FC = () => {
               alt={brand.name}
               height={50}
               width={brand.width}
-              className="grayscale hover:grayscale-0"
             />
           </div>
         ))}

@@ -7,7 +7,7 @@ import Testimonials from "@/components/HomePage/Testimonials";
 
 export default function PortfolioPage() {
   return (
-    <main className="flex min-h-screen flex-col bg-main-color">
+    <main className="flex flex-col bg-main-color">
       <Header />
       <PortfolioSection />
       <PhotographySection />
