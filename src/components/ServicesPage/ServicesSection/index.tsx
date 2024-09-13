@@ -12,7 +12,7 @@ const ServicesSection = () => {
           </h2>
         </div>
         <BackgroundImage
-          src="/kytsya.jpg"
+          src="/ServicesSection-top.jpg"
           className="lg:w-7/12 xl:w-4/6 self-start hidden md:block"
           height="h-28"
         />
@@ -24,7 +24,7 @@ const ServicesSection = () => {
         project.
       </p>
       <div className="container mx-auto px-4 mb-4 pt-8">
-        <BackgroundImage src="/kytsya.jpg" />
+        <BackgroundImage src="/ServicesSection-bot.jpg" />
       </div>
     </section>
   );

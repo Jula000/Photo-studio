@@ -19,7 +19,7 @@ const ContactSection: React.FC = () => {
           </p>
         </div>
         <div className="w-full md:w-1/2 flex flex-col items-center">
-          <BackgroundImage src="/kytsya.jpg" height="h-80">
+          <BackgroundImage src="/contact-page.jpg" height="h-80">
             <div className="bottom-1/2 -right-4 bg-main-color px-4 py-4 rounded-full absolute hidden md:flex">
               <SocialMediaButtons className="rounded-full border border-about-bg px-2 py-2" />
             </div>

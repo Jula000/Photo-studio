@@ -19,8 +19,8 @@ const AboutSection: React.FC = () => {
           <h1 className="text-4xl font-bold">ABOUT DAMIEN BRAUN</h1>
         </div>
         <BackgroundImage
-          src="/kytsya.jpg"
-          className="h-20 lg:w-7/12 xl:w-10/12 hidden md:block"
+          src="/about-page/about-page-top.jpg"
+          className="h-20 lg:w-7/12 xl:w-10/12 hidden md:block justify-start"
           height="h-40"
         />
       </div>
@@ -35,7 +35,7 @@ const AboutSection: React.FC = () => {
         </div>
       </div>
       <section className="container mx-auto px-4 mb-16 border-b border-about-bg pb-20">
-        <BackgroundImage src="/kytsya.jpg" />
+        <BackgroundImage src="/about-page/about-page-bot.jpg" />
       </section>
       <div className="border-b border-about-bg pb-20">
         <h2 className="text-3xl font-bold mb-4">MY BIOGRAPHY</h2>

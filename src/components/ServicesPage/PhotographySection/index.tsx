@@ -1,16 +1,17 @@
 import React from "react";
 import Link from "next/link";
-import Button from "@/components/common/Button";
 import Image from "next/image";
+import Button from "@/components/common/Button";
 
 interface PhotographySectionProps {
   title: string;
   description: string;
   linkText: string;
   linkUrl: string;
-  imageUrl: string;
-  onPrev?: () => void;
-  onNext?: () => void;
+  imageUrls: string[];
+  currentImageIndex: number;
+  onPrev: () => void;
+  onNext: () => void;
 }
 
 const PhotographySection: React.FC<PhotographySectionProps> = ({
@@ -18,7 +19,8 @@ const PhotographySection: React.FC<PhotographySectionProps> = ({
   description,
   linkText,
   linkUrl,
-  imageUrl,
+  imageUrls,
+  currentImageIndex,
   onPrev,
   onNext,
 }) => {
@@ -34,39 +36,23 @@ const PhotographySection: React.FC<PhotographySectionProps> = ({
           {linkText} &rarr;
         </Link>
       </div>
-      <div className="flex-col">
-        <div className="flex-1 mt-6 md:mt-0 mb-2">
+      <div className="flex flex-col items-center">
+        <div className="relative w-[300px] h-[300px] mt-6 md:mt-0 mb-2">
           <Image
-            src={imageUrl}
-            alt={title}
-            width={200}
-            height={360}
-            className="bg-cover"
+            src={imageUrls[currentImageIndex]}
+            alt={`${title} - ${currentImageIndex + 1}`}
+            layout="fill"
+            objectFit="cover"
+            className="rounded-lg"
           />
         </div>
-        <div className="flex mt-6 md:mt-0 space-x-2 justify-center">
-          {onPrev && (
-            <Button onClick={onPrev} className="rounded-full w-10 h-10">
-              <Image
-                src={"<.svg"}
-                alt=""
-                width={9}
-                height={9}
-                className="self-center"
-              />
-            </Button>
-          )}
-          {onNext && (
-            <Button onClick={onNext} className="rounded-full w-10 h-10">
-              <Image
-                src={">.svg"}
-                alt=""
-                width={9}
-                height={9}
-                className="self-center"
-              />
-            </Button>
-          )}
+        <div className="flex mt-6 space-x-2 justify-center">
+          <Button onClick={onPrev} className="rounded-full w-10 h-10">
+            &lt;
+          </Button>
+          <Button onClick={onNext} className="rounded-full w-10 h-10">
+            &gt;
+          </Button>
         </div>
       </div>
     </div>

@@ -1,10 +1,46 @@
-import React from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Button from "../../common/Button";
 import ServiceHighlights from "../../common/ServiceHighlights";
-import Link from "next/link";
+
+interface PhotoServiceHome {
+  photo: string;
+}
 
 const ServiceSection = () => {
+  const [photos, setPhotos] = useState<PhotoServiceHome[]>([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchPhotos = async () => {
+      try {
+        const response = await fetch("/api/photoServiceHome");
+        const data = await response.json();
+        setPhotos(data.photos as PhotoServiceHome[]); // Use type assertion here
+        setLoading(false);
+      } catch (error) {
+        console.error("Failed to fetch photos", error);
+        setLoading(false);
+      }
+    };
+
+    fetchPhotos();
+  }, []);
+
+  const nextImage = () => {
+    setCurrentIndex((currentIndex + 1) % photos.length);
+  };
+
+  const prevImage = () => {
+    setCurrentIndex(currentIndex === 0 ? photos.length - 1 : currentIndex - 1);
+  };
+
+  if (loading) {
+    return <div>Loading...</div>; // Or any loading spinner you prefer
+  }
+
   return (
     <div className="text-white flex items-center justify-center">
       <div className="mx-auto p-6 space-y-6 container">
@@ -15,8 +51,12 @@ const ServiceSection = () => {
           </div>
           <div className="flex items-center">
             <div className="border border-about-bg rounded-full space-x-4 p-2 hidden lg:flex mr-4">
-              <Button className="p-2 rounded-full">{"<"}</Button>
-              <Button className="p-2 rounded-full">{">"}</Button>
+              <Button onClick={prevImage} className="p-2 rounded-full">
+                {"<"}
+              </Button>
+              <Button onClick={nextImage} className="p-2 rounded-full">
+                {">"}
+              </Button>
             </div>
             <Button className="w-full sm:w-auto px-4 py-2 text-center">
               View All Services →
@@ -36,20 +76,24 @@ const ServiceSection = () => {
               ]}
             />
           </div>
-          <div className="relative w-full md:w-1/2 h-80">
+          <div className="relative w-full md:w-1/2 h-[450px]">
             <Image
-              src="/kytsya.jpg"
+              src={photos[currentIndex]?.photo || "/default-image.jpg"}
               alt="Event Photography"
               layout="fill"
               objectFit="cover"
               className="rounded-lg"
             />
           </div>
-          <div className="flex sm:hidden justify-center md:justify-end mt-4">
-            <div className="p-2 border-about-bg border rounded-full">
-              <Button className="p-2 rounded-full mr-4">{"<"}</Button>
-              <Button className="p-2 rounded-full">{">"}</Button>
-            </div>
+        </div>
+        <div className="flex sm:hidden justify-center md:justify-end mt-4">
+          <div className="p-2 border-about-bg border rounded-full">
+            <Button onClick={prevImage} className="p-2 rounded-full mr-4">
+              {"<"}
+            </Button>
+            <Button onClick={nextImage} className="p-2 rounded-full">
+              {">"}
+            </Button>
           </div>
         </div>
       </div>

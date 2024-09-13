@@ -5,7 +5,6 @@ interface Project {
   title: string;
   date: string;
   image: string;
-  link: string;
 }
 
 interface Props {
@@ -20,15 +19,13 @@ const ProjectList: React.FC<Props> = ({ projects }) => (
           key={index}
           className="flex-shrink-0 flex flex-col w-[100%] lg:w-[calc(33.333%-1rem)] sm:w-[100%]"
         >
-          <Link href={project.link}>
-            <div className="project-image-container">
-              <img
-                className="project-image"
-                src={project.image}
-                alt={project.title}
-              />
-            </div>
-          </Link>
+          <div className="w-full pt-[100%] relative overflow-hidden rounded-lg">
+            <img
+              className="absolute inset-0 w-full h-full object-cover"
+              src={project.image}
+              alt={project.title}
+            />
+          </div>
           <div className="mt-4 flex justify-between">
             <div className="flex flex-col">
               <h2 className="text-xl font-semibold">{project.title}</h2>
